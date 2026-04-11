@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Add when you publish a sitemap:
+# Sitemap: https://mediaalacarte.net/sitemap.xml
