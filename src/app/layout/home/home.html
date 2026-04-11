@@ -7,41 +7,31 @@
 
   <app-marquee />
 
-  @defer (on viewport) {
-    <section id="services" aria-label="Services">
+  <section id="services" aria-label="Services">
+    @defer (hydrate on viewport) {
       <app-services />
-    </section>
-  } @placeholder {
-    <section id="services" aria-label="Services" style="min-height:400px"></section>
-  }
+    }
+  </section>
 
-  @defer (on viewport) {
-    <section id="features" aria-label="Features">
+  <section id="features" aria-label="Features">
+    @defer (hydrate on viewport) {
       <app-features />
-    </section>
-  } @placeholder {
-    <section id="features" aria-label="Features" style="min-height:400px"></section>
-  }
+    }
+  </section>
 
-  @defer (on viewport) {
-    <section id="insights" aria-label="Insights">
+  <section id="insights" aria-label="Insights">
+    @defer (hydrate on viewport) {
       <app-insights />
-    </section>
-  } @placeholder {
-    <section id="insights" aria-label="Insights" style="min-height:400px"></section>
-  }
+    }
+  </section>
 
-  @defer (on viewport) {
-    <section id="cta" aria-label="Call to Action">
+  <section id="cta" aria-label="Call to Action">
+    @defer (hydrate on viewport) {
       <app-cta />
-    </section>
-  } @placeholder {
-    <section id="cta" aria-label="Call to Action" style="min-height:200px"></section>
-  }
+    }
+  </section>
 </main>
 
-@defer (on viewport) {
+@defer (hydrate on viewport) {
   <app-footer />
-} @placeholder {
-  <footer style="min-height:200px"></footer>
 }
