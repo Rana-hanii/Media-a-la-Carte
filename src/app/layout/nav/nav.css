@@ -1,0 +1,49 @@
+:host {
+  display: block;
+}
+
+nav {
+  background: rgba(15, 15, 15, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+nav.nav-scrolled {
+  background: rgba(15, 15, 15, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+}
+
+.nav-link {
+  color: var(--color-text-secondary);
+  position: relative;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
+}
+
+/* Quarter underline — always present but scaled to 0 width */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 25%;
+  height: 2px;
+  background: linear-gradient(90deg, #FF2E63, #FF4D6D);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link.active {
+  color: var(--color-brand-pink);
+}
+
+/* Show the quarter underline when active */
+.nav-link.active::after {
+  transform: scaleX(1);
+}

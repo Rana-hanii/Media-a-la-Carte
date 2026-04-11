@@ -1,0 +1,217 @@
+:host {
+  display: block;
+}
+
+/* ── Section background: dot grid + angled purple/magenta sheens ── */
+.services-section {
+  position: relative;
+  background: #050508;
+}
+
+.services-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.services-dot-grid {
+  position: absolute;
+  inset: 0;
+  background-color: #050508;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+
+.services-sheen {
+  position: absolute;
+  top: -25%;
+  width: min(52vw, 520px);
+  height: 150%;
+  opacity: 0.55;
+  filter: blur(48px);
+  border-radius: 40%;
+}
+
+.services-sheen-left {
+  left: -18%;
+  transform: rotate(-18deg);
+  background: linear-gradient(
+    160deg,
+    rgba(139, 92, 246, 0.45) 0%,
+    rgba(219, 39, 119, 0.22) 45%,
+    transparent 75%
+  );
+}
+
+.services-sheen-right {
+  right: -18%;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    200deg,
+    rgba(168, 85, 247, 0.4) 0%,
+    rgba(236, 72, 153, 0.25) 50%,
+    transparent 78%
+  );
+}
+
+@media (max-width: 768px) {
+  .services-sheen {
+    opacity: 0.4;
+    width: 70vw;
+  }
+}
+
+/* ── Header strip: dark canvas, dot grid, soft blue glow (top-right) ── */
+.services-header {
+  position: relative;
+  isolation: isolate;
+  background: #030304;
+}
+
+.services-header-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.services-header-dots {
+  position: absolute;
+  inset: 0;
+  background-color: #030304;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.065) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-position: 0 0;
+}
+
+.services-header-glow {
+  position: absolute;
+  top: -35%;
+  right: -8%;
+  width: min(72%, 420px);
+  aspect-ratio: 1;
+  max-height: 140%;
+  background: radial-gradient(
+    circle at 65% 35%,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(147, 197, 253, 0.12) 28%,
+    rgba(59, 130, 246, 0.06) 48%,
+    transparent 68%
+  );
+  filter: blur(36px);
+  opacity: 0.95;
+}
+
+@media (max-width: 640px) {
+  .services-header-glow {
+    width: min(90%, 280px);
+    top: -45%;
+    right: -20%;
+    filter: blur(28px);
+  }
+}
+
+/* ── Cards ── */
+.service-card {
+  min-height: 300px;
+}
+
+/* Active card: wider */
+.service-card-active {
+  flex: 2.5;
+}
+
+.service-card-active .card-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-card-active .card-description,
+.service-card-active .card-arrow {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.12s;
+}
+
+.service-card-active .card-edge-tab {
+  opacity: 0;
+  transform: translateX(12px);
+  pointer-events: none;
+}
+
+/* Collapsed: narrow + edge tab only */
+.service-card-collapsed {
+  flex: 1;
+}
+
+.service-card-collapsed .card-content {
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+}
+
+.service-card-collapsed .card-description,
+.service-card-collapsed .card-arrow {
+  opacity: 0;
+}
+
+.service-card-collapsed .card-edge-tab {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Vertical gradient tab on right edge (design reference) */
+.card-edge-tab {
+  padding: 1.35rem 0.65rem 1.35rem 0.85rem;
+  background: linear-gradient(180deg, #ed4550 0%, #c81e5c 50%, #a91562 100%);
+  border-radius: 14px 0 0 14px;
+  box-shadow: -4px 0 24px rgba(237, 69, 80, 0.35);
+}
+
+.card-edge-tab-text {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .service-card {
+    min-height: 250px;
+  }
+
+  .service-card-active {
+    flex: unset;
+    height: 350px;
+  }
+
+  .service-card-collapsed {
+    flex: unset;
+    height: 120px;
+  }
+
+  .card-edge-tab {
+    bottom: 0.75rem;
+    right: 0.75rem;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 20px rgba(237, 69, 80, 0.35);
+  }
+
+  .card-edge-tab-text {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+  }
+}

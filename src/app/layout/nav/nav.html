@@ -1,0 +1,63 @@
+<nav #navBar class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <div class="section-container flex items-center justify-between h-16 lg:h-20">
+
+    <!-- Logo -->
+    <a href="https://mediaalacarte.net/" target="_blank" class="flex items-center gap-2 shrink-0">
+      <img src="/images/logo/logo-light.webp" alt="logo" class="w-32 h-auto">
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden lg:flex items-center gap-8">
+      @for (link of navLinks; track link.label) {
+        <a
+          [href]="link.href"
+          class="nav-link text-sm font-medium transition-colors duration-200"
+          [class.active]="isActive(link.sectionId)"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </div>
+
+    <!-- Login Button -->
+    <a href="#" class="hidden lg:inline-flex btn-primary py-2! px-6! text-sm">
+      Login
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button
+      class="lg:hidden flex flex-col gap-1.5 p-2"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen()"
+      aria-label="Toggle menu"
+    >
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300"
+            [class.translate-y-2]="isMobileMenuOpen()"
+            [class.rotate-45]="isMobileMenuOpen()"></span>
+      <span class="block w-6 h-0.5 bg-white transition-opacity duration-300"
+            [class.opacity-0]="isMobileMenuOpen()"></span>
+      <span class="block w-6 h-0.5 bg-white transition-transform duration-300"
+            [class.-translate-y-2]="isMobileMenuOpen()"
+            [class.-rotate-45]="isMobileMenuOpen()"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (isMobileMenuOpen()) {
+    <div class="lg:hidden bg-surface-base/95 backdrop-blur-xl border-t border-white/5">
+      <div class="section-container py-6 flex flex-col gap-4">
+        @for (link of navLinks; track link.label) {
+          <a
+            [href]="link.href"
+            class="nav-link text-base font-medium py-2"
+            [class.active]="isActive(link.sectionId)"
+            (click)="closeMobileMenu()"
+          >
+            {{ link.label }}
+          </a>
+        }
+        <a href="#" class="btn-primary w-full mt-2 text-center">Login</a>
+      </div>
+    </div>
+  }
+</nav>

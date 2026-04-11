@@ -1,0 +1,132 @@
+:host {
+  display: block;
+}
+
+/* ── Section canvas (black + grid + spotlight + orbits) ── */
+.insights-section {
+  position: relative;
+  background: #000000;
+}
+
+.insights-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.insights-backdrop-grid {
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+}
+
+.insights-backdrop-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 75% 60% at 50% 38%,
+    rgba(71, 85, 105, 0.28) 0%,
+    rgba(30, 41, 59, 0.12) 42%,
+    rgba(0, 0, 0, 0) 68%
+  );
+}
+
+.insights-backdrop-rings {
+  position: absolute;
+  left: 50%;
+  top: 36%;
+  width: min(960px, 110vw);
+  height: min(960px, 110vw);
+  max-height: 85vh;
+  transform: translate(-50%, -50%);
+}
+
+.insights-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  aspect-ratio: 1;
+}
+
+.insights-ring:nth-child(1) {
+  width: 100%;
+  height: 100%;
+}
+
+.insights-ring:nth-child(2) {
+  width: 72%;
+  height: 72%;
+  border-color: rgba(255, 255, 255, 0.055);
+}
+
+.insights-ring:nth-child(3) {
+  width: 46%;
+  height: 46%;
+  border-color: rgba(255, 255, 255, 0.045);
+}
+
+.insights-node {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.12),
+    0 0 18px rgba(255, 255, 255, 0.45);
+}
+
+.insights-node-a {
+  left: 8%;
+  top: 22%;
+}
+
+.insights-node-b {
+  right: 12%;
+  top: 30%;
+}
+
+.insights-node-c {
+  left: 18%;
+  bottom: 26%;
+}
+
+.insights-node-d {
+  right: 8%;
+  bottom: 20%;
+}
+
+@media (max-width: 640px) {
+  .insights-backdrop-rings {
+    top: 32%;
+    width: min(720px, 140vw);
+    height: min(720px, 140vw);
+  }
+
+  .insights-backdrop-grid {
+    background-size: 40px 40px;
+  }
+}
+
+.avatar-float {
+  animation: avatar-float 4s ease-in-out infinite;
+}
+
+@keyframes avatar-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

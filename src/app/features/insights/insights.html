@@ -1,0 +1,79 @@
+<section #insightsSection class="insights-section py-16 md:py-32 relative overflow-hidden">
+  <!-- Background: grid + spotlight + orbital rings (matches CTA-style canvas) -->
+  <div class="insights-backdrop" aria-hidden="true">
+    <div class="insights-backdrop-grid"></div>
+    <div class="insights-backdrop-glow"></div>
+    <div class="insights-backdrop-rings">
+      <div class="insights-ring"></div>
+      <div class="insights-ring"></div>
+      <div class="insights-ring"></div>
+      <span class="insights-node insights-node-a"></span>
+      <span class="insights-node insights-node-b"></span>
+      <span class="insights-node insights-node-c"></span>
+      <span class="insights-node insights-node-d"></span>
+    </div>
+  </div>
+
+  <div class="section-container relative z-10">
+
+    <!-- Header -->
+    <div class="insights-header text-center mb-12 md:mb-16">
+      <span class="inline-block text-xs tracking-[0.2em] uppercase font-semibold text-brand-pink border border-brand-pink/30 rounded-full px-5 py-2 mb-6">
+        Powering Collaboration Across Media
+      </span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        Collaborate. Elevate. Succeed
+      </h2>
+      <p class="text-text-secondary text-base md:text-lg max-w-lg mx-auto mb-8">
+        Empower advertisers, agencies, and media owners to work seamlessly.
+      </p>
+      <a href="#cta" class="btn-secondary">Meet the Experts</a>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="rounded-2xl bg-linear-to-r from-brand-pink to-brand-accent p-px max-w-4xl mx-auto mb-12 md:mb-16">
+      <div class="rounded-2xl bg-linear-to-r from-brand-pink to-brand-accent px-6 md:px-12 py-8 md:py-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 text-center">
+          @for (stat of stats; track stat.label) {
+            <div>
+              <p class="stat-value text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2">
+                {{ stat.value }}
+              </p>
+              <p class="text-white/80 text-sm md:text-base">{{ stat.label }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating avatars -->
+    <div class="avatars-container relative h-50 md:h-70 max-w-4xl mx-auto hidden md:block">
+      <!-- Radial lines (decorative) -->
+      <div class="absolute inset-0 flex items-start justify-center">
+        <div class="w-100 h-100 rounded-full border border-white/5"></div>
+      </div>
+      <div class="absolute inset-0 flex items-start justify-center">
+        <div class="w-70 h-70 rounded-full border border-white/5 mt-15"></div>
+      </div>
+
+      @for (avatar of avatars; track avatar.src) {
+        <div
+          class="avatar-circle absolute rounded-full overflow-hidden border-2 border-white/20 shadow-lg avatar-float"
+          [style.top]="avatar.top"
+          [style.left]="avatar.left"
+          [style.width]="avatar.size"
+          [style.height]="avatar.size"
+          [style.animation-delay]="avatar.delay + 's'"
+        >
+          <img [src]="avatar.src" alt="Team member" class="w-full h-full object-cover"/>
+        </div>
+      }
+
+      <!-- Small dot decorations -->
+      <div class="absolute top-[55%] left-[30%] w-2 h-2 rounded-full bg-white/20"></div>
+      <div class="absolute top-[60%] left-[60%] w-1.5 h-1.5 rounded-full bg-white/15"></div>
+      <div class="absolute top-[75%] left-[45%] w-2.5 h-2.5 rounded-full bg-white/10"></div>
+      <div class="absolute top-[50%] left-[85%] w-2 h-2 rounded-full bg-white/15"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,69 @@
+<section #servicesSection class="services-section py-16 md:py-32 relative overflow-hidden">
+  <div class="services-backdrop" aria-hidden="true">
+    <div class="services-dot-grid"></div>
+    <div class="services-sheen services-sheen-left"></div>
+    <div class="services-sheen services-sheen-right"></div>
+    
+  </div>
+
+  <div class="section-container relative z-10">
+
+    <!-- Header -->
+    <div class="services-header text-center mb-12 md:mb-16">
+      <svg class="hero-clip-defs" width="0" height="0" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="heroImageClip" clipPathUnits="objectBoundingBox">
+            <path
+              d="M 0 0.4 Q 0 0 0.4 0 L 0.9 0 Q 1 0 1 0.4 L 1 0.85 Q 1 1 0.85 1 L 0.15 1 Q 0 1 0 0.85 Z"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+      <div class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-linear-to-br from-brand-pink to-brand-accent mb-6 shadow-lg shadow-brand-pink/25">
+       <img src="/images/icons/services.webp" alt="" class="w-10 h-10">
+      </div>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">Our Services</h2>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="services-grid flex flex-col md:flex-row gap-4 md:gap-5 items-stretch justify-center max-w-5xl mx-auto md:h-130 min-w-0">
+      @for (card of cards; track card.title; let i = $index) {
+        <div
+          class="service-card relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-500 ease-in-out border border-white/5 min-w-0"
+          [class.service-card-active]="activeCard() === i"
+          [class.service-card-collapsed]="activeCard() !== i"
+          (click)="setActiveCard(i)"
+          (mouseenter)="setActiveCard(i)"
+        >
+          <!-- Background image -->
+          <img
+            [src]="card.image"
+            [alt]="card.title"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+
+          <!-- Gradient overlay -->
+          <div class="absolute inset-0 z-1 bg-linear-to-t from-black/90 via-black/35 to-transparent"></div>
+
+          <!-- Active: title block bottom-left + arrow bottom-right -->
+          <div class="card-content absolute bottom-0 left-0 right-0 z-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 md:p-8 transition-all duration-500">
+            <div class="min-w-0 flex-1">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">{{ card.title }}</h3>
+              <p class="text-white/75 text-sm leading-relaxed card-description">
+                {{ card.description }}
+              </p>
+            </div>
+            <div class="card-arrow w-11 h-11 shrink-0 rounded-full bg-linear-to-br from-brand-pink to-brand-accent flex items-center justify-center shadow-lg shadow-brand-pink/30">
+              <img src="/images/icons/arrow-service.webp" alt="" class="w-5 h-5">
+            </div>
+          </div>
+
+          <!-- Collapsed: vertical title on gradient tab (right edge) -->
+          <div class="card-edge-tab absolute bottom-6 right-0 z-2 transition-all duration-500">
+            <span class="card-edge-tab-text">{{ card.title }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

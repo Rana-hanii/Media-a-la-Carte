@@ -1,0 +1,59 @@
+<section #heroSection class="hero-section relative pt-28 pb-16 md:pt-36 md:pb-32">
+  <!-- clipPath: CSS path() cannot use % — use SVG 0–1 coords + url(#…) -->
+  <svg class="hero-clip-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="heroImageClip" clipPathUnits="objectBoundingBox">
+        <path
+          d="M 0 0.4 Q 0 0 0.4 0 L 0.9 0 Q 1 0 1 0.4 L 1 0.85 Q 1 1 0.85 1 L 0.15 1 Q 0 1 0 0.85 Z"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+
+  <div class="hero-content section-container">
+
+    <!-- Headline -->
+    <div class="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+      <p class="hero-tag text-xs md:text-sm tracking-[0.2em] uppercase text-text-muted mb-6 font-medium">
+        #1 Media Marketplace for Advertisers &amp; Agencies
+      </p>
+      <p class="hero-subtitle-top text-2xl md:text-3xl lg:text-4xl font-bold gradient-text mb-2">
+        Bigger Impact
+      </p>
+      <h1 class="hero-title text-4xl md:text-5xl lg:text-[64px] font-bold text-white leading-[1.1] mb-4">
+        Stronger Campaigns
+      </h1>
+      <p class="hero-subtitle-bottom text-xl md:text-2xl lg:text-3xl font-semibold text-text-secondary">
+        Smarter Media Buying
+      </p>
+    </div>
+
+    <!-- Image + buttons (single stack — buttons “cut” into the shape) -->
+    <div class="hero-visual">
+      <div class="hero-image  rounded-3xl">
+       <div class=" rounded-br-4xl p-5 translate-x-[-20px] translate-y-[-20px] md:translate-x-[-50px] translate-y-[-40px] absolute  z-20">
+        <a href="#services" class="btn-primary md:py-6 hover:bg-brand-accent hover:text-black transition-all duration-300">
+          Start your Journey!
+        </a>
+       </div>
+
+        <div class="hero-image-media">
+          <img
+            src="/images/hero.webp"
+            alt="Business team celebrating success"
+            class="hero-image-img"
+            loading="eager"
+          />
+          <div class="hero-image-fade"></div>
+        </div>
+
+       <div class=" rounded-tl-4xl p-3  absolute -bottom-10 -right-8  z-20">
+        <a href="#features" class="btn-secondary py-4 backdrop-blur-xl hover:bg-brand-accent hover:text-black transition-all duration-300">
+          Learn More
+        </a>
+       </div>
+      </div>
+    </div>
+
+  </div>
+</section>
