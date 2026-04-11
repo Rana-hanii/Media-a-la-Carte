@@ -1,9 +1,10 @@
 import { Component, afterNextRender, ElementRef, viewChild } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

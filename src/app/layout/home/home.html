@@ -7,21 +7,41 @@
 
   <app-marquee />
 
-  <section id="services" aria-label="Services">
-    <app-services />
-  </section>
+  @defer (on viewport) {
+    <section id="services" aria-label="Services">
+      <app-services />
+    </section>
+  } @placeholder {
+    <section id="services" aria-label="Services" style="min-height:400px"></section>
+  }
 
-  <section id="features" aria-label="Features">
-    <app-features />
-  </section>
+  @defer (on viewport) {
+    <section id="features" aria-label="Features">
+      <app-features />
+    </section>
+  } @placeholder {
+    <section id="features" aria-label="Features" style="min-height:400px"></section>
+  }
 
-  <section id="insights" aria-label="Insights">
-    <app-insights />
-  </section>
+  @defer (on viewport) {
+    <section id="insights" aria-label="Insights">
+      <app-insights />
+    </section>
+  } @placeholder {
+    <section id="insights" aria-label="Insights" style="min-height:400px"></section>
+  }
 
-  <section id="cta" aria-label="Call to Action">
-    <app-cta />
-  </section>
+  @defer (on viewport) {
+    <section id="cta" aria-label="Call to Action">
+      <app-cta />
+    </section>
+  } @placeholder {
+    <section id="cta" aria-label="Call to Action" style="min-height:200px"></section>
+  }
 </main>
 
-<app-footer />
+@defer (on viewport) {
+  <app-footer />
+} @placeholder {
+  <footer style="min-height:200px"></footer>
+}

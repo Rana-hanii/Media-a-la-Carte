@@ -24,6 +24,8 @@
   opacity: 0.22;
   z-index: 0;
   pointer-events: none;
+  will-change: transform;
+  contain: strict;
 }
 
 .hero-section::before {
@@ -62,7 +64,8 @@
   position: relative;
   width: 100%;
   filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.5));
-
+  will-change: transform;
+  contain: layout;
 }
 
 .hero-clip-defs {
