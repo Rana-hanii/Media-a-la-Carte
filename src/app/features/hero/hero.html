@@ -4,7 +4,17 @@
     <defs>
       <clipPath id="heroImageClip" clipPathUnits="objectBoundingBox">
         <path
-          d="M 0 0.4 Q 0 0 0.4 0 L 0.9 0 Q 1 0 1 0.4 L 1 0.85 Q 1 1 0.85 1 L 0.15 1 Q 0 1 0 0.85 Z"
+          d="M 0 0.28
+             Q 0 0.06 0.14 0.02
+             L 0.2 0
+             Q 0.24 0 0.28 0
+             L 1 0
+             L 1 0.72
+             Q 1 0.76 0.97 0.79
+             L 0.8 0.98
+             Q 0.77 1 0.73 1
+             L 0 1
+             L 0 0.28 Z"
         />
       </clipPath>
     </defs>
@@ -28,33 +38,45 @@
       </p>
     </div>
 
-    <!-- Image + buttons (single stack — buttons “cut” into the shape) -->
+    <!-- Image + buttons: CTAs sit in the chamfered corners -->
     <div class="hero-visual">
-      <div class="hero-image  rounded-3xl">
-       <div class=" rounded-br-4xl p-5 translate-x-[-20px] translate-y-[-20px] md:translate-x-[-50px] translate-y-[-40px] absolute  z-20">
-        <a href="#services" class="btn-primary md:py-6 hover:bg-brand-accent hover:text-black transition-all duration-300">
-          Start your Journey!
-        </a>
-       </div>
-
+      <div class="hero-image">
         <div class="hero-image-media">
-          <img
+          <img 
             ngSrc="/images/hero.webp"
             alt="Business team celebrating success"
-            class="hero-image-img"
+            class="w-3xl mx-auto hidden xl:block"
             width="896"
             height="520"
             priority
             fetchpriority="high"
           />
-          <div class="hero-image-fade"></div>
+          <img 
+          ngSrc="/images/hero-lg.webp"
+          alt="Business team celebrating success"
+          class="w-2xl mx-auto block xl:hidden rounded-3xl"
+          width="896"
+          height="520"
+          priority
+          fetchpriority="high"
+        />
+          <div class="hero-image-fade" aria-hidden="true"></div>
         </div>
 
-       <div class=" rounded-tl-4xl p-3  absolute -bottom-10 -right-8  z-20">
-        <a href="#features" class="btn-secondary py-4 backdrop-blur-xl hover:bg-brand-accent hover:text-black transition-all duration-300">
+        <a
+          href="#services"
+          class="hero-cta hero-cta--primary translate-x-[-90px] translate-y-[-22px] lg:translate-x-[10px] lg:translate-y-[-40px]  xl:translate-x-[0] xl:translate-y-[0] btn-primary font-heading font-semibold rounded-full transition-all duration-300 hover:bg-brand-accent hover:text-black"
+        >
+          Start your Journey!
+        </a>
+
+        <a
+          href="#features"
+          class="hero-cta hero-cta--secondary translate-x-[70px] translate-y-[22px] lg:translate-x-[-10px] lg:translate-y-[40px]  xl:translate-x-[0] xl:translate-y-[0] btn-secondary font-heading font-semibold rounded-full backdrop-blur-md transition-all duration-300 hover:bg-brand-accent hover:text-black"
+        >
+        <img src="/images/icons/media.webp" alt="media" class="w-5 h-5">
           Learn More
         </a>
-       </div>
       </div>
     </div>
   </div>
