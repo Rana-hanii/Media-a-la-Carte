@@ -16,10 +16,18 @@ export class App {
         import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => ScrollTrigger.refresh());
       };
 
+      const scheduleRefresh = () => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => refresh(), { timeout: 2000 });
+        } else {
+          setTimeout(() => refresh(), 200);
+        }
+      };
+
       if (document.readyState === 'complete') {
-        refresh();
+        scheduleRefresh();
       } else {
-        window.addEventListener('load', () => refresh(), { once: true });
+        window.addEventListener('load', () => scheduleRefresh(), { once: true });
       }
     });
   }
