@@ -5,7 +5,7 @@
 /* ── Section background: dot grid + angled purple/magenta sheens ── */
 .services-section {
   position: relative;
-  background: #050508;
+  /* background: #050508; */
 }
 
 .services-backdrop {
@@ -19,7 +19,7 @@
 .services-dot-grid {
   position: absolute;
   inset: 0;
-  background-color: #050508;
+  /* background-color: #050508; */
   background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 28px 28px;
   background-position: 0 0;
@@ -68,7 +68,7 @@
 .services-header {
   position: relative;
   isolation: isolate;
-  background: #030304;
+  /* background: #030304; */
 }
 
 .services-header-bg {
@@ -169,15 +169,16 @@
 .card-edge-tab {
   padding: 1.35rem 0.65rem 1.35rem 0.85rem;
   background: linear-gradient(180deg, #ed4550 0%, #c81e5c 50%, #a91562 100%);
-  border-radius: 14px 0 0 14px;
+  /* border-radius: 14px 0 0 14px; */
   box-shadow: -4px 0 24px rgba(237, 69, 80, 0.35);
 }
 
 .card-edge-tab-text {
   display: block;
   font-weight: 700;
+  font-family: var(--font-heading);
   font-size: 0.9375rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #fff;
   writing-mode: vertical-rl;
   text-orientation: mixed;
