@@ -1,5 +1,5 @@
-import { Component, afterNextRender, ElementRef, viewChild } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { afterNextRender, Component, ElementRef, viewChild } from '@angular/core';
 import { gsap } from 'gsap';
 
 @Component({
@@ -17,6 +17,7 @@ export class Hero {
         const el = this.heroSection()?.nativeElement;
         if (!el) return;
 
+        const isDesktop = window.matchMedia('(min-width: 768px)').matches;
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
         tl.fromTo(el.querySelector('.hero-tag'),
@@ -26,9 +27,12 @@ export class Hero {
           .fromTo(el.querySelector('.hero-title'),
             { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, '-=0.3')
           .fromTo(el.querySelector('.hero-subtitle-bottom'),
-            { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.3')
-          .fromTo(el.querySelector('.hero-visual'),
+            { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, '-=0.3');
+
+        if (isDesktop) {
+          tl.fromTo(el.querySelector('.hero-visual'),
             { y: 60, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.9 }, '-=0.4');
+        }
       });
     });
   }

@@ -1,5 +1,4 @@
 import { Component, signal, afterNextRender, ElementRef, viewChild } from '@angular/core';
-import { gsap } from 'gsap';
 
 interface NavLink {
   readonly label: string;
@@ -34,10 +33,12 @@ export class Nav {
         const nav = this.navBar()?.nativeElement;
         if (!nav) return;
 
-        gsap.fromTo(nav,
-          { y: -60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
-        );
+        import('gsap').then(({ gsap }) => {
+          gsap.fromTo(nav,
+            { y: -60, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+          );
+        });
 
         window.addEventListener('scroll', () => {
           nav.classList.toggle('nav-scrolled', window.scrollY > 50);

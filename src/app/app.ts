@@ -1,6 +1,5 @@
 import { Component, afterNextRender, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +12,14 @@ export class App {
 
   constructor() {
     afterNextRender(() => {
-      // Recalculate all ScrollTrigger positions after images/fonts finish loading.
-      // This fixes triggers being registered against an incomplete layout on first visit.
+      const refresh = () => {
+        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => ScrollTrigger.refresh());
+      };
+
       if (document.readyState === 'complete') {
-        ScrollTrigger.refresh();
+        refresh();
       } else {
-        window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+        window.addEventListener('load', () => refresh(), { once: true });
       }
     });
   }

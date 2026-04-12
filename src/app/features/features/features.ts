@@ -1,6 +1,4 @@
 import { Component, afterNextRender, ElementRef, viewChild } from '@angular/core';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 interface FeatureCard {
   readonly iconSrc: string;
@@ -53,34 +51,37 @@ export class Features {
   constructor() {
     afterNextRender(() => {
       requestAnimationFrame(() => {
-        gsap.registerPlugin(ScrollTrigger);
         const el = this.featuresSection()?.nativeElement;
         if (!el) return;
 
-        gsap.fromTo(
-          el.querySelector('.features-heading'),
-          { y: 40, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 80%' },
-          },
-        );
+        Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
+          gsap.registerPlugin(ScrollTrigger);
 
-        gsap.fromTo(
-          el.querySelectorAll('.feature-card'),
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.6,
-            stagger: 0.12,
-            ease: 'power2.out',
-            scrollTrigger: { trigger: el.querySelector('.features-grid-layout'), start: 'top 85%' },
-          },
-        );
+          gsap.fromTo(
+            el.querySelector('.features-heading'),
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: 'power2.out',
+              scrollTrigger: { trigger: el, start: 'top 80%' },
+            },
+          );
+
+          gsap.fromTo(
+            el.querySelectorAll('.feature-card'),
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.12,
+              ease: 'power2.out',
+              scrollTrigger: { trigger: el.querySelector('.features-grid-layout'), start: 'top 85%' },
+            },
+          );
+        });
       });
     });
   }
