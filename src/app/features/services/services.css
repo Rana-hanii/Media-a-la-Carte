@@ -187,19 +187,24 @@
 }
 
 @media (max-width: 768px) {
+  /* Switch to grid so grid-template-rows drives the expand/collapse —
+     GPU-composited and far smoother than animating height directly */
+  .services-grid {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    transition: grid-template-rows 320ms ease-out;
+  }
+
   .service-card {
-    min-height: 250px;
-    transition: height 280ms ease-out, opacity 280ms ease-out, transform 280ms ease-out;
+    min-height: unset;
+    height: 100%;
+    transition: opacity 320ms ease-out, transform 320ms ease-out;
   }
 
-  .service-card-active {
-    flex: unset;
-    height: 350px;
-  }
-
+  .service-card-active,
   .service-card-collapsed {
     flex: unset;
-    height: 120px;
+    height: 100%;
   }
 
 

@@ -1,4 +1,4 @@
-import { afterNextRender, Component, ElementRef, signal, viewChild } from '@angular/core';
+import { afterNextRender, Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 
 interface ServiceCard {
   readonly title: string;
@@ -15,6 +15,11 @@ interface ServiceCard {
 export class Services {
   private readonly servicesSection = viewChild<ElementRef<HTMLElement>>('servicesSection');
   protected readonly activeCard = signal(0);
+
+  /** Drives the CSS grid-template-rows animation on mobile — smoother than height transitions */
+  protected readonly gridTemplateRows = computed(() =>
+    this.cards.map((_, i) => i === this.activeCard() ? '350px' : '120px').join(' ')
+  );
 
   protected readonly cards: readonly ServiceCard[] = [
     {
