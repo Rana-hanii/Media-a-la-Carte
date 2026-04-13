@@ -49,38 +49,75 @@ export class Insights {
         Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
           gsap.registerPlugin(ScrollTrigger);
 
+          // ── Header: blur-in ──────────────────────────────────────────────
           gsap.fromTo(el.querySelector('.insights-header'),
-            { y: 40, opacity: 0 },
+            { filter: 'blur(16px)', opacity: 0, y: 20 },
             {
-              y: 0, opacity: 1, duration: 0.7, ease: 'power2.out',
+              filter: 'blur(0px)', opacity: 1, y: 0,
+              duration: 1.0, ease: 'power2.out',
               scrollTrigger: { trigger: el, start: 'top 80%' },
             },
           );
 
-          const statEls = el.querySelectorAll('.stat-value');
-          statEls.forEach((statEl: Element, i: number) => {
+          // ── Stats bar: fan in left → right, then counter per column ──────
+          const statsGrid = el.querySelector('.grid') as HTMLElement;
+          const statValueEls = el.querySelectorAll('.stat-value');
+          const statColEls = Array.from(statValueEls).map(v => v.parentElement as HTMLElement);
+
+          gsap.fromTo(statColEls,
+            { y: 50, opacity: 0 },
+            {
+              y: 0, opacity: 1, duration: 0.6, stagger: 0.18, ease: 'power3.out',
+              scrollTrigger: { trigger: statsGrid, start: 'top 85%' },
+            },
+          );
+
+          // Counter starts after its column slides in (delay matches stagger)
+          statColEls.forEach((_, i) => {
             const stat = this.stats[i];
+            const statEl = statValueEls[i] as HTMLElement;
             const obj = { val: 0 };
             gsap.to(obj, {
               val: stat.numericValue,
               duration: 2,
               ease: 'power2.out',
-              scrollTrigger: { trigger: statEl, start: 'top 90%' },
+              delay: i * 0.18 + 0.35,
+              scrollTrigger: { trigger: statsGrid, start: 'top 85%' },
               onUpdate: () => {
                 const isDecimal = stat.suffix === '%';
                 const display = isDecimal ? obj.val.toFixed(2) : Math.floor(obj.val).toString();
-                (statEl as HTMLElement).textContent = display + stat.suffix;
+                statEl.textContent = display + stat.suffix;
               },
             });
           });
 
-          gsap.fromTo(el.querySelectorAll('.avatar-circle'),
-            { scale: 0, opacity: 0 },
-            {
-              scale: 1, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'back.out(1.7)',
-              scrollTrigger: { trigger: el.querySelector('.avatars-container'), start: 'top 90%' },
-            },
-          );
+          // ── Avatars: magnetic scatter → snap to final positions ──────────
+          const avatarsContainer = el.querySelector<HTMLElement>('.avatars-container');
+          const avatarEls = Array.from(el.querySelectorAll<HTMLElement>('.avatar-circle'));
+
+          if (avatarsContainer && avatarEls.length) {
+            const containerW = avatarsContainer.offsetWidth;
+            const containerH = avatarsContainer.offsetHeight;
+
+            // Push every avatar to the container center before animating
+            avatarEls.forEach(avatar => {
+              const finalCX = avatar.offsetLeft + avatar.offsetWidth / 2;
+              const finalCY = avatar.offsetTop + avatar.offsetHeight / 2;
+              gsap.set(avatar, {
+                x: containerW / 2 - finalCX,
+                y: containerH / 2 - finalCY,
+                opacity: 0,
+                scale: 0.4,
+              });
+            });
+
+            // Scatter outward to final positions with elastic snap
+            gsap.to(avatarEls, {
+              x: 0, y: 0, opacity: 1, scale: 1,
+              duration: 0.9, stagger: 0.08, ease: 'elastic.out(1, 0.65)',
+              scrollTrigger: { trigger: avatarsContainer, start: 'top 90%' },
+            });
+          }
         });
       });
     });

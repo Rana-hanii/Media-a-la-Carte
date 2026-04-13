@@ -57,28 +57,44 @@ export class Features {
         Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
           gsap.registerPlugin(ScrollTrigger);
 
+          const gridLayout = el.querySelector('.features-grid-layout');
+          const cards = el.querySelectorAll('.feature-card');
+
+          // Heading: fade up
           gsap.fromTo(
             el.querySelector('.features-heading'),
             { y: 40, opacity: 0 },
             {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: 'power2.out',
+              y: 0, opacity: 1, duration: 0.7, ease: 'power2.out',
               scrollTrigger: { trigger: el, start: 'top 80%' },
             },
           );
 
-          gsap.fromTo(
-            el.querySelectorAll('.feature-card'),
-            { y: 50, opacity: 0 },
+          // Hero card (col-span-2, left side) → slides in from the left
+          gsap.fromTo(cards[0],
+            { x: -80, opacity: 0 },
             {
-              y: 0,
-              opacity: 1,
-              duration: 0.6,
-              stagger: 0.12,
-              ease: 'power2.out',
-              scrollTrigger: { trigger: el.querySelector('.features-grid-layout'), start: 'top 85%' },
+              x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+              scrollTrigger: { trigger: gridLayout, start: 'top 85%' },
+            },
+          );
+
+          // Campaign card (right column, row 1) → slides in from the right
+          gsap.fromTo(cards[1],
+            { x: 80, opacity: 0 },
+            {
+              x: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+              scrollTrigger: { trigger: gridLayout, start: 'top 85%' },
+            },
+          );
+
+          // Bottom row (3 cards) → staggered slide up with increasing delay
+          gsap.fromTo(
+            [cards[2], cards[3], cards[4]],
+            { y: 60, opacity: 0 },
+            {
+              y: 0, opacity: 1, duration: 0.65, stagger: 0.15, ease: 'power2.out',
+              scrollTrigger: { trigger: gridLayout, start: 'top 85%' },
             },
           );
         });

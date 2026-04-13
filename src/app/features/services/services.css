@@ -2,7 +2,6 @@
   display: block;
 }
 
-/* ── Section background: dot grid + angled purple/magenta sheens ── */
 .services-section {
   position: relative;
   /* background: #050508; */
@@ -204,11 +203,7 @@
     height: 120px;
   }
 
-  /* Disable expensive blur sheens on low-power mobile */
-  .services-sheen {
-    filter: none;
-    opacity: 0.25;
-  }
+
 
   .card-edge-tab {
     bottom: 0.75rem;

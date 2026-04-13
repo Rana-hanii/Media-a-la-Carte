@@ -20,7 +20,7 @@ Subtle shadows and glow effects are used to create depth without overwhelming th
 
 **Key Characteristics:**
 - Dark modern UI (`#0F0F0F`–`#1A1A1A`)
-- Vibrant pink/red gradient accents (`#FF2E63 → #FF4D6D`)
+- Vibrant pink/red gradient accents (`#df256e → #ed4550`)
 - Clean typography (Montserrat + Inter)
 - Rounded UI (12px–999px radius)
 - Soft glow & gradient overlays
@@ -32,9 +32,9 @@ Subtle shadows and glow effects are used to create depth without overwhelming th
 ## 2. Color Palette & Roles
 
 ### Primary Brand
-- **Primary Pink** (`#FF2E63`): Main CTA, buttons, highlights
-- **Accent Pink** (`#FF4D6D`): Gradient secondary
-- **Gradient**: `linear-gradient(135deg, #FF2E63, #FF4D6D)`
+- **Primary Pink** (`#df256e`): Main CTA, buttons, highlights
+- **Accent Pink** (`#ed4550`): Gradient secondary
+- **Gradient**: `linear-gradient(135deg, #df256e, #ed4550)`
 
 ### Backgrounds
 - **Deep Black** (`#0F0F0F`): Main background
@@ -87,7 +87,7 @@ Subtle shadows and glow effects are used to create depth without overwhelming th
 ### Buttons
 
 **Primary Button**
-- Background: Gradient (`#FF2E63 → #FF4D6D`)
+- Background: Gradient (`#df256e → #ed4550`)
 - Text: `#FFFFFF`
 - Padding: 12px 24px
 - Radius: 999px
@@ -95,7 +95,7 @@ Subtle shadows and glow effects are used to create depth without overwhelming th
 
 **Secondary Button**
 - Background: transparent
-- Border: `1px solid #FF2E63`
+- Border: `1px solid #df256e`
 - Text: `#FFFFFF`
 - Radius: 999px
 
@@ -220,11 +220,11 @@ Subtle shadows and glow effects are used to create depth without overwhelming th
 - Background: #0F0F0F
 - Card: #1A1A1A
 - Text: #FFFFFF
-- Accent: #FF2E63 gradient
+- Accent: #df256e gradient
 - Radius: 16px cards / 999px buttons
 
 ### Example Prompts
 - "Create a service card with dark background #1A1A1A, 16px radius, padding 24px, title 18px semibold, white text, hover lift effect."
-- "Design a primary CTA button with pink gradient (#FF2E63 to #FF4D6D), pill shape, white text, hover glow."
+- "Design a primary CTA button with pink gradient (#df256e to #ed4550), pill shape, white text, hover glow."
 - "Build hero section with dark background, large heading (60px bold), subtitle, and centered CTA button."
 - "Create stats section with large bold numbers (48px) and count-up animation."
