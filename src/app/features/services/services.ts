@@ -1,4 +1,4 @@
-import { Component, afterNextRender, ElementRef, signal, viewChild } from '@angular/core';
+import { afterNextRender, Component, ElementRef, signal, viewChild } from '@angular/core';
 
 interface ServiceCard {
   readonly title: string;
@@ -39,6 +39,14 @@ export class Services {
       requestAnimationFrame(() => {
         const el = this.servicesSection()?.nativeElement;
         if (!el) return;
+
+        // Only attach mouseenter on true pointer/hover devices — prevents
+        // double-trigger (mouseenter + click) on touch screens causing lag.
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+          el.querySelectorAll<HTMLElement>('.service-card').forEach((card, i) => {
+            card.addEventListener('mouseenter', () => this.setActiveCard(i), { passive: true });
+          });
+        }
 
         Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
           gsap.registerPlugin(ScrollTrigger);

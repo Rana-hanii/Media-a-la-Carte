@@ -59,7 +59,6 @@
 
 @media (max-width: 768px) {
   .services-sheen {
-    opacity: 0.4;
     width: 70vw;
   }
 }
@@ -119,6 +118,8 @@
 /* ── Cards ── */
 .service-card {
   min-height: 300px;
+  transition: flex 500ms ease-in-out, height 50ms ease-in-out,
+              opacity 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
 /* Active card: wider */
@@ -189,6 +190,8 @@
 @media (max-width: 768px) {
   .service-card {
     min-height: 250px;
+    /* Faster transition on mobile — reduces perceived lag */
+    transition: height 500ms ease-in-out, opacity 500ms ease-in-out, transform 500ms ease-in-out;
   }
 
   .service-card-active {
@@ -199,6 +202,12 @@
   .service-card-collapsed {
     flex: unset;
     height: 120px;
+  }
+
+  /* Disable expensive blur sheens on low-power mobile */
+  .services-sheen {
+    filter: none;
+    opacity: 0.25;
   }
 
   .card-edge-tab {
