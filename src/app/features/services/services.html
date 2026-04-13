@@ -1,4 +1,4 @@
-<section #servicesSection class="services-section py-16 md:py-32 relative overflow-hidden">
+<section #servicesSection class="services-section py-16 md:py-32 relative overflow-hidden min-h-[1300px]! lg:min-h-[300px]!">
   <div class="services-backdrop" aria-hidden="true">
     <div class="services-dot-grid"></div>
     <div class="services-sheen services-sheen-left"></div>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Cards grid -->
-    <div class="services-grid flex flex-col md:flex-row gap-4 md:gap-5 items-stretch justify-center max-w-5xl mx-auto md:h-130 min-w-0">
+    <div class="services-grid flex flex-col md:flex-row gap-4 md:gap-5 items-stretch justify-center max-w-5xl mx-auto md:h-130 min-w-0 ">
       @for (card of cards; track card.title; let i = $index) {
         <div
           class="service-card relative overflow-hidden rounded-3xl cursor-pointer border border-white/5 min-w-0"
