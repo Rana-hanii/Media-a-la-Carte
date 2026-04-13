@@ -241,9 +241,5 @@
     letter-spacing: 0.04em;
   }
 
-  /* Kill expensive blur sheens on mobile */
-  .services-sheen {
-    filter: none;
-    opacity: 0.2;
-  }
+ 
 }
