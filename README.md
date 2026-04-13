@@ -121,9 +121,6 @@ git clone https://github.com/Rana-hanii/Media-a-la-Carte.git
 
 ### 2. Navigate to the project folder
 
-```bash
-cd media-alacarte-landing
-```
 
 ### 3. Install dependencies
 
