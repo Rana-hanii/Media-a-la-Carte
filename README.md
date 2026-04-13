@@ -109,7 +109,52 @@ The project is designed to be scalable, as it will be extended with more feature
 
 ---
 
-## ▶️ How to Run
+## ▶️ How to Run the Project Locally
+
+Follow these steps to run the project on your machine:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Rana-hanii/Media-a-la-Carte.git
+```
+
+### 2. Navigate to the project folder
+
+```bash
+cd media-alacarte-landing
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Run the development server
+
+```bash
+ng s --no-hmr
+```
+
+### 5. Open in browser
+
+Go to:
+
+```
+http://localhost:4200/
+```
+
+---
+
+## 🛠️ Build for Production
+
+```bash
+ng build -c production
+```
+
+The build files will be available in the `dist/` folder.
+
 
 ```bash
 npm install
@@ -142,8 +187,7 @@ ng test
 
 ## 🌐 Live Demo
 
-(Add your deployed link here)
-
+https://media-a-la-carte.vercel.app/
 ---
 
 ## 📎 Notes
