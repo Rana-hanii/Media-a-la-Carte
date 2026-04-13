@@ -33,3 +33,37 @@
 .solution-chip {
   box-shadow: 0 4px 24px rgba(237, 69, 80, 0.35);
 }
+
+/* Dark overlay on the grid when any card is hovered */
+.features-grid-hover::before {
+  content: '';
+  position: absolute;
+  inset: -2rem;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 2rem;
+  z-index: 5;
+  pointer-events: none;
+  transition: background 0.35s ease;
+}
+
+.features-grid-hover:has(.feature-card:hover)::before {
+  background: rgba(0, 0, 0, 0.80);
+}
+
+.feature-card{
+transition: all 0.5s ease;
+}
+/* Hovered card rises above the overlay */
+.features-grid-hover .feature-card:hover {
+  z-index: 10;
+  transform: scale(1.05)!important;
+  background: linear-gradient(165deg, #ed4550, #dd2471);
+  color: black !important;
+}
+
+.text{
+  transition: all 0.5s ease;
+}
+.features-grid-hover .feature-card:hover .text{
+  color: black !important;
+}

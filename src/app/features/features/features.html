@@ -18,12 +18,12 @@
     </div>
 
     <!-- Row 1: 2:1 | Row 2: three equal -->
-    <div class="features-grid-layout max-w-6xl mx-auto flex flex-col gap-4 md:gap-5">
+    <div class="features-grid-layout features-grid-hover max-w-6xl mx-auto flex flex-col gap-4 md:gap-5 relative">
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-5">
         <!-- Wide hero card -->
         <div
-          class="feature-card feature-card-hero lg:col-span-2 relative overflow-hidden rounded-3xl border border-white/5 min-h-[280px] md:min-h-[320px] lg:min-h-0 group"
+          class="feature-card cursor-pointer feature-card-hero lg:col-span-2 relative overflow-hidden rounded-3xl border border-white/5 min-h-[280px] md:min-h-[320px] lg:min-h-0 group transition-transform duration-300 hover:scale-[1.2] hover:z-10"
         >
           <img
             src="/images/features.webp"
@@ -36,7 +36,7 @@
               <p class="text-text-secondary text-sm md:text-base leading-relaxed max-w-xl">
                 We simplify media buying with smart data, automation, and collaboration to maximize ROI, boost execution, and measurable impact.
               </p>
-              <a href="#cta" class="btn-primary shrink-0 self-start sm:self-auto">
+              <a href="#cta" class="btn-primary shrink-0 self-start sm:self-auto text-black font-semibold! font-heading">
                 Get Started
               </a>
             </div>
@@ -45,15 +45,15 @@
 
         <!-- Campaign Planning -->
         <div
-          class="feature-card rounded-3xl p-6 md:p-7 border border-white/5 bg-surface-card hover:border-brand-pink/30 transition-all duration-300 group flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-0"
+          class="feature-card cursor-pointer rounded-3xl p-6 md:p-7 border border-white/5 bg-surface-card hover:border-brand-pink/30 transition-all duration-300 group flex flex-col min-h-[280px] md:min-h-[320px] lg:min-h-0 hover:scale-[1.02] hover:z-10 relative"
         >
-          <div class="mb-4 text-text-secondary">
+          <div class="mb-4 text-text-secondary ">
             <div class="feature-icon-ring w-11 h-11 rounded-full bg-black flex items-center justify-center">
               <img [src]="campaignCard.iconSrc" [alt]="''" class="w-6 h-6 object-contain" />
             </div>
           </div>
-          <h3 class="text-lg font-bold text-white mb-2">{{ campaignCard.title }}</h3>
-          <p class="text-sm leading-relaxed text-text-secondary mb-auto pb-4">
+          <h3 class="text-lg font-bold text-white mb-2 text">{{ campaignCard.title }}</h3>
+          <p class="text-sm leading-relaxed text-text-secondary text mb-auto pb-4">
             {{ campaignCard.description }}
           </p>
           <div class="flex justify-end mt-auto pt-2">
@@ -68,7 +68,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
         @for (card of rowTwoCards; track card.title) {
           <div
-            class="feature-card rounded-3xl p-6 md:p-7 border transition-all duration-300 group flex flex-col min-h-[260px]"
+            class="feature-card cursor-pointer rounded-3xl p-6 md:p-7 border  group flex flex-col min-h-[260px] hover:scale-[1.02] hover:z-10 relative"
             [class]="card.highlighted
               ? 'border-transparent bg-linear-to-br from-brand-pink to-brand-accent'
               : 'border-white/5 bg-surface-card hover:border-brand-pink/30'"
@@ -81,13 +81,13 @@
 
             <h3
               class="text-lg font-bold mb-2"
-              [class]="card.highlighted ? 'text-black' : 'text-white'"
+              [class]="card.highlighted ? 'text-black' : 'text-white text'"
             >
               {{ card.title }}
             </h3>
             <p
               class="text-sm leading-relaxed mb-auto pb-4"
-              [class]="card.highlighted ? 'text-black/80' : 'text-text-secondary'"
+              [class]="card.highlighted ? 'text-black' : 'text-text-secondary text'"
             >
               {{ card.description }}
             </p>
