@@ -187,27 +187,44 @@
 }
 
 @media (max-width: 768px) {
-  /* Switch to grid so grid-template-rows drives the expand/collapse —
-     GPU-composited and far smoother than animating height directly */
+  /* Stacked card layout — all animation uses transform only (GPU-composited) */
   .services-grid {
-    display: grid !important;
-    grid-template-columns: 1fr;
-    transition: grid-template-rows 320ms ease-out;
+    display: block !important;
+    position: relative;
+    height: 350px;
+    margin-bottom: 10rem;
+    overflow: visible;
   }
 
   .service-card {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    top: 0;
     min-height: unset;
-    height: 100%;
-    transition: opacity 320ms ease-out, transform 320ms ease-out;
+    height: 350px;
+    border-radius: 1.5rem;
+    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 300ms ease-out;
+    will-change: transform;
   }
 
-  .service-card-active,
+  /* Active card: sits at top, fully visible */
+  .service-card-active {
+    flex: unset;
+    transform: translateY(0) !important;
+    z-index: 3;
+    opacity: 1;
+  }
+
+  /* Collapsed cards slide below the active card to show just their edge tab */
   .service-card-collapsed {
     flex: unset;
-    height: 100%;
+    opacity: 0.85;
   }
 
-
+  .service-card-tab-1 { transform: translateY(365px) !important; z-index: 2; }
+  .service-card-tab-2 { transform: translateY(415px) !important; z-index: 1; }
 
   .card-edge-tab {
     bottom: 0.75rem;
@@ -222,5 +239,11 @@
     transform: none;
     font-size: 0.875rem;
     letter-spacing: 0.04em;
+  }
+
+  /* Kill expensive blur sheens on mobile */
+  .services-sheen {
+    filter: none;
+    opacity: 0.2;
   }
 }

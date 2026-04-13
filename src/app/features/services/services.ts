@@ -1,4 +1,4 @@
-import { afterNextRender, Component, computed, ElementRef, signal, viewChild } from '@angular/core';
+import { afterNextRender, Component, ElementRef, signal, viewChild } from '@angular/core';
 
 interface ServiceCard {
   readonly title: string;
@@ -16,10 +16,16 @@ export class Services {
   private readonly servicesSection = viewChild<ElementRef<HTMLElement>>('servicesSection');
   protected readonly activeCard = signal(0);
 
-  /** Drives the CSS grid-template-rows animation on mobile — smoother than height transitions */
-  protected readonly gridTemplateRows = computed(() =>
-    this.cards.map((_, i) => i === this.activeCard() ? '350px' : '120px').join(' ')
-  );
+  /** On mobile, collapsed cards stack below the active one as tabs.
+   *  Returns the visual order position (0 = active, 1 = first tab, 2 = second tab). */
+  protected mobileOffset(index: number): number {
+    const active = this.activeCard();
+    if (index === active) return 0;
+    const collapsed = this.cards
+      .map((_, i) => i)
+      .filter(i => i !== active);
+    return collapsed.indexOf(index) + 1;
+  }
 
   protected readonly cards: readonly ServiceCard[] = [
     {
@@ -53,6 +59,8 @@ export class Services {
           });
         }
 
+        const isMobile = !window.matchMedia('(min-width: 768px)').matches;
+
         Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
           gsap.registerPlugin(ScrollTrigger);
 
@@ -64,13 +72,25 @@ export class Services {
             },
           );
 
-          gsap.fromTo(el.querySelectorAll('.service-card'),
-            { y: 60, opacity: 0 },
-            {
-              y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: 'power2.out',
-              scrollTrigger: { trigger: el.querySelector('.services-grid'), start: 'top 85%' },
-            },
-          );
+          if (isMobile) {
+            // On mobile, cards use CSS class-based transforms for the stacked layout.
+            // Only animate opacity so GSAP doesn't set inline transform that conflicts.
+            gsap.fromTo(el.querySelectorAll('.service-card'),
+              { opacity: 0 },
+              {
+                opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power2.out',
+                scrollTrigger: { trigger: el.querySelector('.services-grid'), start: 'top 85%' },
+              },
+            );
+          } else {
+            gsap.fromTo(el.querySelectorAll('.service-card'),
+              { y: 60, opacity: 0 },
+              {
+                y: 0, opacity: 1, duration: 0.7, stagger: 0.15, ease: 'power2.out',
+                scrollTrigger: { trigger: el.querySelector('.services-grid'), start: 'top 85%' },
+              },
+            );
+          }
         });
       });
     });
