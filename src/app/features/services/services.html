@@ -37,7 +37,7 @@
           <div class="absolute inset-0 z-1 bg-linear-to-t from-black/90 via-black/35 to-transparent"></div>
 
           <!-- Active: title block bottom-left + arrow bottom-right -->
-          <div class="card-content absolute bottom-0 left-0 right-0 z-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 md:p-8 transition-all duration-500">
+          <div class="card-content absolute bottom-0 left-0 right-0 z-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 p-6 md:p-8 transition-[opacity,transform] duration-500">
             <div class="min-w-0 flex-1">
               <h3 class="text-xl md:text-2xl font-bold text-white mb-2">{{ card.title }}</h3>
               <p class="text-white/75 text-sm leading-relaxed card-description">
@@ -50,7 +50,7 @@
           </div>
 
           <!-- Collapsed: vertical title on gradient tab (right edge) -->
-          <div class="card-edge-tab absolute bottom-6 right-0 z-2 transition-all duration-500 rounded-full rounded-tr-none md:translate-y-6 ">
+          <div class="card-edge-tab absolute bottom-6 right-0 z-2 transition-[opacity,transform] duration-500 rounded-full rounded-tr-none md:translate-y-6">
             <span class="card-edge-tab-text">{{ card.title }}</span>
           </div>
         </div>

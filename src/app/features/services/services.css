@@ -117,7 +117,7 @@
 /* ── Cards ── */
 .service-card {
   min-height: 300px;
-  transition: flex 500ms ease-in-out, height 50ms ease-in-out,
+  transition: flex 500ms ease-in-out, height 500ms ease-in-out,
               opacity 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
@@ -189,8 +189,7 @@
 @media (max-width: 768px) {
   .service-card {
     min-height: 250px;
-    /* Faster transition on mobile — reduces perceived lag */
-    transition: height 500ms ease-in-out, opacity 500ms ease-in-out, transform 500ms ease-in-out;
+    transition: height 280ms ease-out, opacity 280ms ease-out, transform 280ms ease-out;
   }
 
   .service-card-active {
